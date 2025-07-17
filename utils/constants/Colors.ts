@@ -3,7 +3,6 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
 export const Colors = {
@@ -11,9 +10,12 @@ export const Colors = {
     backgroundWhiteOne: '#FFF3EC',
     backgroundWhiteTwo: '#FFEED5',
     backgroundWhiteThree: '#F8EDEB',
-    backgroundWhiteFour: '#FEF9E1',
+    backgroundWhiteFour: '#FCFEFD', //** Opcion 1 */
     backgroundWhiteFive: '#EDEEE9',
-    backgroundWhiteSix: '#F3FBFC',
+    backgroundWhiteSix: '#F3FBFC', //** Opcion 2 */
+    backgroundWhiteSeven: '#fffdf0',
+    backgroundWhiteEight: '#F2F2F0',
+
 
     backgroundYellowOne: '#FFC693',
     backgroundYellowTwo: '#FFC39D',
@@ -24,6 +26,37 @@ export const Colors = {
   colorsGradient: {
     backgroundBlueOne: ['#314755', '#26a0da'],
     backgroundBlueTwo: ['#360033', '#0b8793'],
+  },
+  textsColors:{
+    negroOne: '#323E42',
+    negroTwo: '#3DA230',
+    negroThree: '#OE1328',
+    azulOne: '#494A8A',
+    azulTwo: '#OF232E',
+    azulThree: '#13213C',
+  },
+  fondosCards: {
+    fondoAmarilloCardOne: '#FBD48C',
+    fondoAmarilloCardTwo: '#FFCI33',
+    fondoAmarilloCardThree: '#FFC69E',
+    fondoAmarilloCardFour: '#FCF5BF',
+    fondoAmarilloCardFive: '#FAEDCD',
+    fondoAmarilloCardSix: '#FFC39D',
+    fondoAmarilloCardSeven: '#F4D462',
+    fondoAmarilloCardEight: '#F4C400',
+    fondoAzulFuerteCardSeven: '#13213C',
+  },
+  fondosBotones: {
+    fondoBotonRojoOne: '#F92C88',
+    fondoBotonRojoTwo: '#F86888',
+    fondoBotonRojoThree: '#8B0000',
+    fondoBotonRojoFour: '#FF6B6B',
+    fondoBotonRojoFive: '#e11f30',
+    fondoBotonAzulTwo: '#494A8A',
+    fondoBotonAzulThree: '#13213C',
+    fondoBotonAzulFour: '#001740',
+    fondoBotonAzulFive: '#0F2A71',
+    fondoBotonAzulSix: '#0E0F552',
   },
   dark: {
     text: '#ECEDEE',
