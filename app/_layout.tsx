@@ -1,79 +1,215 @@
-import React from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
-import "../global.css"
-import { Colors } from '../utils/constants/Colors'
+import { Link } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import { LinearGradient } from 'expo-linear-gradient';
+import { SplashScreen } from 'expo-router';
+import React, { useEffect, useRef } from 'react';
+import {
+  Animated,
+  Dimensions,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import mujeres1 from '../assets/images/background-1.png';
+import bgImage1 from '../assets/images/background-2.png';
+import mujeres from '../assets/images/background-4.png';
+import bgImage from '../assets/images/test.png';
 
-const _layout = () => {
-  const { colorsPrimary, fondosBotones, fondosCards  } = Colors;
+
+const { width } = Dimensions.get('window');
+SplashScreen.preventAutoHideAsync();
+
+export default function App() {
+  const float1 = useRef(new Animated.Value(0)).current;
+  const float2 = useRef(new Animated.Value(0)).current;
+  const float3 = useRef(new Animated.Value(0)).current;
+
+  // Reusable floating animation
+  const animateFloat = (animatedValue: Animated.Value | Animated.ValueXY, delay = 0) => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(animatedValue, {
+          toValue: -10,
+          duration: 2000,
+          delay,
+          useNativeDriver: true,
+        }),
+        Animated.timing(animatedValue, {
+          toValue: 0,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  };
+
+  useEffect(() => {
+    animateFloat(float1, 0);
+    animateFloat(float2, 1000);
+    animateFloat(float3, 2000);
+  }, []);
+
+  const [fontsLoaded, error] = useFonts({
+    'WinkyRough-Light': require('../assets/fonts/static/WinkyRough-Light.ttf'),
+    'WinkyRough-Medium': require('../assets/fonts/static/WinkyRough-Medium.ttf')
+  })
+
+  useEffect(() => {
+    if (error) throw error;
+
+    if (fontsLoaded) SplashScreen.hideAsync();
+  }, [fontsLoaded, error]);
+
+  if (!fontsLoaded && !error) return null
+
   return (
-    <View className="flex-1 justify-center items-center px-6 space-y-6"
-      style={{ backgroundColor: colorsPrimary.backgroundWhiteSix }}
+    <ImageBackground
+      source={bgImage}
+      style={styles.background}
+      resizeMode="cover"
     >
-      {/* Título */}
-      <Text className="text-2xl font-bol text-center"
-        style={{
-          color: fondosBotones.fondoBotonAzulFour,
-          fontWeight: 'bold',
-        }}
-      >
-        Principe de Paz{'\n'}Ebenezer Chalco MX
-      </Text>
+      <View style={styles.container}>
+        {/* Floating images */}
+        <Animated.View style={[styles.icon, styles.icon1, { transform: [{ translateY: float1 }] }]}>
+          <Image source={bgImage1} style={styles.iconImage} />
+          <LinearGradient
+            colors={['rgba(255,255,255,0.4)', 'transparent']}
+            style={styles.iconOverlay}
+          />
+        </Animated.View>
 
-      {/* Subtítulo */}
-      <Text className="text-center px-2 rounded-xl"
-        style={{ 
-          color: fondosBotones.fondoBotonAzulThree, 
-          width: '95%',
-          height: 90,
-          backgroundColor: colorsPrimary.backgroundWhiteFour,
-          padding: 10,
-          boxShadow: '4px 5px 21px 9px rgba(0,0,0,0.1);',
-          fontWeight: '900',
-        }}
-      >
-        Explore all the existing job roles based on your{'\n'}
-        Aqui va el texto de una card .......
-      </Text>
+        <Animated.View style={[styles.icon, styles.icon2, { transform: [{ translateY: float2 }] }]}>
+          <Image source={mujeres} style={styles.iconImage} />
+          <LinearGradient
+            colors={['rgba(255,255,255,0.4)', 'transparent']}
+            style={styles.iconOverlay}
+          />
+        </Animated.View>
 
-      {/* Botones */}
-      <View className="flex-row space-x-4 mt-6">
-        <TouchableOpacity
-          onPress={() => console.log('Login Pressed')}
-          className="rounded-xl"
-          style={{ 
-            backgroundColor:   fondosBotones.fondoBotonAzulThree,
-            paddingHorizontal: 5,
-            paddingVertical: 55, 
-          }}
-        >
-          <Text className="text-white font-semibold">Botones Guardar/ver</Text>
-        </TouchableOpacity>
+        <Animated.View style={[styles.icon, styles.icon3, { transform: [{ translateY: float3 }] }]}>
+          <Image source={mujeres1} style={styles.iconImage} />
+          <LinearGradient
+            colors={['rgba(255,255,255,0.4)', 'transparent']}
+            style={styles.iconOverlay}
+          />
+        </Animated.View>
 
-        <TouchableOpacity
-          onPress={() => console.log('Register Pressed')}
-          className="border rounded-xl"
-          style={{ 
-            backgroundColor: fondosBotones.fondoBotonRojoFive,
-            paddingHorizontal: 5,
-            paddingVertical: 55, 
-          }}
-        >
-          <Text className="text-white font-semibold">Botones Secundarios{'\n'} para eliminar o cancelar</Text>
-        </TouchableOpacity>
-                <TouchableOpacity
-          onPress={() => console.log('Register Pressed')}
-          className="border rounded-xl"
-          style={{ 
-            backgroundColor: fondosCards.fondoAmarilloCardSeven,
-            paddingHorizontal: 5,
-            paddingVertical: 55, 
-          }}
-        >
-          <Text className="text-slate-900 font-semibold">Botones Tercero</Text>
-        </TouchableOpacity>
+        {/* Text */}
+        <View style={styles.textBlock}>
+          <Text style={styles.title}>Ebenezer Principe de Paz</Text>
+          <Text style={styles.highlight}>¡Bienvenido! La paz de Dios sea contigo hoy y por siempre.</Text>
+          <TouchableOpacity activeOpacity={0.8} style={styles.button}>
+            <LinearGradient
+              colors={['#0c0326', '#030417']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.gradient}
+            >
+              <Text style={styles.buttonText}>Continuar</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+          <Text style={styles.description}>
+            Si eres nuevo puedes entrar <Link screen="Profile" params={{ id: 'jane' }} style={styles.color}> aqui</Link>
+          </Text>
+        </View>
       </View>
-    </View>
-  )
+    </ImageBackground>
+  );
 }
 
-export default _layout
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 24,
+    justifyContent: 'flex-end',
+    paddingBottom: 60,
+  },
+  position: {
+    marginTop: 2000
+  },
+  icon: {
+    position: 'absolute',
+    width: 180,
+    height: 250,
+    borderRadius: 16,
+    overflow: 'hidden',
+    zIndex: 2,
+    elevation: 14,
+    shadowColor: 'rgba(0,0,0,0.10)',
+    shadowOffset: { width: 12, height: 5 },
+    shadowOpacity: 1,
+    shadowRadius: 75,
+  },
+  iconImage: {
+    width: '100%',
+    height: '100%',
+  },
+  iconOverlay: {
+    position: 'absolute',
+    top: 0,
+    height: '100%',
+    width: '100%',
+  },
+  icon1: {
+    top: 80,
+    left: 10,
+  },
+  icon2: {
+    top: 150,
+    left: width / 2 - 105,
+  },
+  icon3: {
+    top: 120,
+    right: 10,
+  },
+  textBlock: {
+    zIndex: 1,
+  },
+  title: {
+    fontFamily: 'WinkyRough-Light',
+    fontSize: 52,
+    lineHeight: 56,
+    fontWeight: '400',
+    color: '#13213C',
+  },
+  highlight: {
+    fontFamily: 'WinkyRough-Medium',
+    fontSize: 20,
+    lineHeight: 38,
+    fontWeight: '900',
+    color: '#0E0F552',
+    marginTop: 4,
+  },
+  description: {
+    fontFamily: 'WinkyRough-Light',
+    textAlign: 'center',
+    marginTop: 16,
+    fontSize: 16,
+    color: '#555',
+  },
+  button: {
+    marginTop: 24,
+    borderRadius: 30,
+    overflow: 'hidden',
+  },
+  gradient: {
+    paddingVertical: 14,
+    alignItems: 'center',
+    borderRadius: 30,
+  },
+  buttonText: {
+    fontWeight: '600',
+    fontSize: 16,
+    color: '#ffff',
+  },
+  color: {
+    color: '#FF6B6B',
+    fontWeight: 900
+  }
+});

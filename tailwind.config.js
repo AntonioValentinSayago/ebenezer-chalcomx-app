@@ -9,7 +9,12 @@ module.exports = {
 ],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'work-light': ['WinkyRough-Light', 'sans-serif'],
+        'work-medium': ['WinkyRough-Medium', 'sans-serif']
+      }
+    },
   },
   plugins: [],
 }

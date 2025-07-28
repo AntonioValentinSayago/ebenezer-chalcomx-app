@@ -49,11 +49,11 @@ export const Colors = {
   fondosBotones: {
     fondoBotonRojoOne: '#F92C88',
     fondoBotonRojoTwo: '#F86888',
-    fondoBotonRojoThree: '#8B0000',
+    fondoBotonRojoThree: '#8B0000', /** TEXTOS ROJOS (Opciones de Botones) */
     fondoBotonRojoFour: '#FF6B6B',
     fondoBotonRojoFive: '#e11f30',
     fondoBotonAzulTwo: '#494A8A',
-    fondoBotonAzulThree: '#13213C',
+    fondoBotonAzulThree: '#13213C', /** Opcion 1 */
     fondoBotonAzulFour: '#001740',
     fondoBotonAzulFive: '#0F2A71',
     fondoBotonAzulSix: '#0E0F552',
