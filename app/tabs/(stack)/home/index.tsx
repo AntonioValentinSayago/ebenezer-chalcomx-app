@@ -1,73 +1,142 @@
-import { Link } from 'expo-router';
-import React, { useState } from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
+import { useState } from 'react';
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-const cards = [
-    { id: 1, title: 'Card 1', category: 'NT' },
-    { id: 2, title: 'Card 2', category: 'AT' },
-    { id: 3, title: 'Card 3', category: 'NT' },
-    { id: 4, title: 'Card 4', category: 'AT' },
-    { id: 5, title: 'Card 5', category: 'NT' },
-    { id: 6, title: 'Card 5', category: 'NT' },
-    { id: 7, title: 'Card 5', category: 'NT' },
-    { id: 8, title: 'Card 5', category: 'NT' },
-    { id: 9, title: 'Card 5', category: 'NT' },
-    { id: 10, title: 'Card 5', category: 'NT' },
-    { id: 11, title: 'Card 5', category: 'NT' },
-    { id: 12, title: 'Card 5', category: 'NT' },
-    { id: 13, title: 'Card 5', category: 'NT' },
-    { id: 14, title: 'Card 5', category: 'NT' },
-    { id: 15, title: 'Card 6', category: 'AT' },
-    { id: 16, title: 'Card 25', category: 'NT' },
+const tabs = ['People', 'Jobs List', 'Trending'];
+const people = [
+  {
+    id: 1,
+    name: 'Bessie',
+    avatar: 'https://randomuser.me/api/portraits/women/1.jpg',
+    description: 'Jacob Jones reposted a post.',
+    date: 'Sat 19, 2025',
+  },
+  {
+    id: 2,
+    name: 'Wade Warren',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    description: '2 new posts from Wade Warren.',
+    date: 'Sat 19, 2025',
+  },
+  {
+    id: 3,
+    name: 'Wade Warren',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    description: '2 new posts from Wade Warren.',
+    date: 'Sat 19, 2025',
+  },
+  {
+    id: 4,
+    name: 'Wade Warren',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    description: '2 new posts from Wade Warren.',
+    date: 'Sat 19, 2025',
+  },
+  {
+    id: 5,
+    name: 'Wade Warren',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    description: '2 new posts from Wade Warren.',
+    date: 'Sat 19, 2025',
+  },
+  {
+    id: 6,
+    name: 'Wade Warren',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    description: '2 new posts from Wade Warren.',
+    date: 'Sat 19, 2025',
+  },
+  {
+    id: 7,
+    name: 'Wade Warren',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    description: '2 new posts from Wade Warren.',
+    date: 'Sat 19, 2025',
+  },
+  {
+    id: 8,
+    name: 'Wade Warren',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    description: '2 new posts from Wade Warren.',
+    date: 'Sat 19, 2025',
+  },
+  {
+    id: 9,
+    name: 'Wade Warren',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    description: '2 new posts from Wade Warren.',
+    date: 'Sat 19, 2025',
+  },
+  {
+    id: 10,
+    name: 'Wade Warren',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    description: '2 new posts from Wade Warren.',
+    date: 'Sat 19, 2025',
+  },
 ];
 
-const categories = ['All', 'NT', 'AT'];
+export default function NotificationsScreen() {
+  const [activeTab, setActiveTab] = useState('People');
 
-const HomeBibliaScrenn = () => {
+  return (
+    <View className="flex-1 pt-5" style={globalStylesLayout.background}>
+      <ScrollView className="px-4 pb-20" showsVerticalScrollIndicator={false}>
+        
+        {/* 🔍 Input de búsqueda */}
+        <View className="flex-row items-center bg-gray-100 rounded-xl px-4 py-2 mb-6">
+          <Ionicons name="search-outline" size={20} color="gray" />
+          <TextInput
+            placeholder="Search course or mentor"
+            className="flex-1 ml-2 text-sm text-gray-700"
+          />
+          <Ionicons name="options-outline" size={20} color="gray" />
+        </View>
 
-    const [selectedCategory, setSelectedCategory] = useState('All');
+        {/* 📌 Tabs superiores personalizadas */}
+        <View className="flex-row justify-around mb-6">
+          {tabs.map((tab) => (
+            <TouchableOpacity
+              key={tab}
+              onPress={() => setActiveTab(tab)}
+              className={`px-4 py-1 rounded-full ${
+                activeTab === tab ? 'bg-blue-500' : 'bg-gray-200'
+              }`}
+            >
+              <Text
+                className={`text-sm ${
+                  activeTab === tab ? 'text-white font-semibold' : 'text-gray-700'
+                }`}
+              >
+                {tab}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
-    const filteredCards = selectedCategory === 'All'
-        ? cards
-        : cards.filter(card => card.category === selectedCategory);
-    return (
-        <SafeAreaView>
-            <View className="p-4">
-                {/* Categorías */}
-                <View className="flex-row justify-around mb-4">
-                    {categories.map(category => (
-                        <TouchableOpacity
-                            key={category}
-                            onPress={() => setSelectedCategory(category)}
-                            className={`px-4 py-2 rounded-full ${selectedCategory === category ? 'bg-blue-500' : 'bg-gray-200'
-                                }`}
-                        >
-                            <Text className={`${selectedCategory === category ? 'text-white' : 'text-black'
-                                }`}>
-                                {category}
-                            </Text>
-                        </TouchableOpacity>
-                    ))}
-                </View>
+        {/* 📥 Contenido dinámico por tab */}
+        <View>
+          <Text className="text-base font-semibold mb-2">{activeTab}</Text>
 
-                {/* Lista de cards */}
-                <FlatList
-                    data={filteredCards}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <View className="mb-2 p-4 bg-white rounded-lg shadow flex flex-row justify-between">
-                            <Text className="text-lg font-bold">
-                                {item.title} {'\n'}
-                                {item.category}
-                            </Text>
-                            <Link href={`/tabs/(stack)/home/[id]`} className="text-sm text-red-600">Ver</Link>
-                        </View>
-                    )}
-                />
+          {people.map((p) => (
+            <View key={p.id} className="flex-row items-center bg-gray-100 rounded-lg p-4 mb-2">
+              <Image source={{ uri: p.avatar }} className="w-10 h-10 rounded-full mr-4" />
+              <View className="flex-1">
+                <Text className="font-medium">{p.name}</Text>
+                <Text className="text-xs text-gray-500">{p.description}</Text>
+              </View>
+              <Text className="text-xs text-gray-400">{p.date}</Text>
             </View>
-        </SafeAreaView>
-    )
+          ))}
+        </View>
+
+      </ScrollView>
+    </View>
+  );
 }
 
-export default HomeBibliaScrenn
+const globalStylesLayout = StyleSheet.create({
+    background:{
+        backgroundColor: 'white'
+    }
+})
