@@ -4,6 +4,7 @@ const { width } = Dimensions.get('window');
 export const globalStylesLayout = StyleSheet.create({
   background: {
     flex: 1,
+    backgroundColor: '#FBF9F7'
   },
   container: {
     flex: 1,
@@ -92,5 +93,29 @@ export const globalStylesLayout = StyleSheet.create({
   color: {
     color: '#FF6B6B',
     fontWeight: 900
+  },
+
+  /** Tabs superior */
+  tabsBottom: {
+    fontFamily: 'WinkyRough-Bold',
+    color: '#222831'
+  },
+  iconosSearch: {
+    fontWeight: '900'
+  },
+  LogBoxShad: {
+    backgroundColor: '#fff',
+    borderRadius: 16,
+
+    // Sombra para iOS
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.1,
+    shadowRadius: 43.5, // Aproximación de 87px blur / 2
+
+    // Sombra para Android
+    elevation: 10, // Aproximado según intensidad deseada
+
+    paddingBottom: 10
   }
 });

@@ -9,7 +9,8 @@ SplashScreen.preventAutoHideAsync();
 const RootLayout = () => {
   const [fontsLoaded, error] = useFonts({
     'WinkyRough-Light': require('../assets/fonts/static/WinkyRough-Light.ttf'),
-    'WinkyRough-Medium': require('../assets/fonts/static/WinkyRough-Medium.ttf')
+    'WinkyRough-Medium': require('../assets/fonts/static/WinkyRough-Medium.ttf'),
+    'WinkyRough-Bold': require('../assets/fonts/static/WinkyRough-Bold.ttf'),
   })
 
   useEffect(() => {

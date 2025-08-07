@@ -1,3 +1,4 @@
+import { globalStylesLayout } from '@/presentation/styles/global-latout.css';
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerActions, StackActions } from '@react-navigation/native';
 import { Stack, useNavigation } from 'expo-router';
@@ -22,7 +23,7 @@ const StackLayout = () => {
                     <View className="flex-row justify-between items-center px-4 pt-12 pb-4">
                         <TouchableOpacity
                             onPress={() => onHeaderLeftClick(!!back)}
-                            className="p-2 rounded-full bg-yellow-500 shadow shadow-black/10"
+                            className="p-2 rounded-full shadow shadow-black/10 "
                         >
                             <Ionicons
                                 name={back ? 'arrow-back-outline' : 'arrow-back-outline'}
@@ -30,10 +31,13 @@ const StackLayout = () => {
                                 color="#333"
                             />
                         </TouchableOpacity>
-                        <Text className="text-xl font-semibold text-gray-800">Reyna Valena 1960</Text>
+                        <Text 
+                            className="text-xl font-semibold text-slate-950"
+                            style={globalStylesLayout.tabsBottom}
+                        >Reyna Valera 1960</Text>
                         <TouchableOpacity
                             onPress={() => onHeaderLeftClick(!!back)}
-                            className="p-2 rounded-full bg-yellow-500 shadow shadow-black/10"
+                            className="p-2 rounded-full shadow shadow-black/10"
                         >
                             <Ionicons
                                 name={back ? 'menu-outline' : 'menu-outline'}
@@ -45,7 +49,7 @@ const StackLayout = () => {
                     </View>
                 ),
                 contentStyle: {
-                    backgroundColor: '#F1f1e8',
+                    backgroundColor: 'white',
                 },
             }}
         >

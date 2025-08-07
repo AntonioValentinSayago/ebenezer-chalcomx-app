@@ -10,7 +10,8 @@ module.exports = {
     extend: {
       fontFamily: {
         'work-light': ['WinkyRough-Light', 'sans-serif'],
-        'work-medium': ['WinkyRough-Medium', 'sans-serif']
+        'work-medium': ['WinkyRough-Medium', 'sans-serif'],
+        'work-bold': ['WinkyRough-Bold', 'sans-serif'],
       }
     },
   },
