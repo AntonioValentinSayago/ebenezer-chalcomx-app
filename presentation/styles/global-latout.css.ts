@@ -3,8 +3,7 @@ const { width } = Dimensions.get('window');
 
 export const globalStylesLayout = StyleSheet.create({
   background: {
-    flex: 1,
-    backgroundColor: '#FBF9F7'
+    backgroundColor: '#FBF9F7',
   },
   container: {
     flex: 1,
@@ -117,5 +116,5 @@ export const globalStylesLayout = StyleSheet.create({
     elevation: 10, // Aproximado según intensidad deseada
 
     paddingBottom: 10
-  }
+  },
 });
