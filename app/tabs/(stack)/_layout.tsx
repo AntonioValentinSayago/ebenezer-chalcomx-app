@@ -49,7 +49,7 @@ const StackLayout = () => {
                     </View>
                 ),
                 contentStyle: {
-                    backgroundColor: 'white',
+                    backgroundColor: 'white', // Top del menu
                 },
             }}
         >

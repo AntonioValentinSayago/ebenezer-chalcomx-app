@@ -1,7 +1,7 @@
 import { globalStylesLayout } from '@/presentation/styles/global-latout.css';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
-import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Pressable, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const tabs = ['Antiguo Testamento', 'Nuevo Testamento'];
 const people = [
@@ -40,6 +40,34 @@ const people = [
         description: '2 new posts from Wade Warren.',
         date: 'Sat 19, 2025',
     },
+    {
+        id: 6,
+        name: 'Josué',
+        avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+        description: '2 new posts from Wade Warren.',
+        date: 'Sat 19, 2025',
+    },
+    {
+        id: 7,
+        name: 'Jueces',
+        avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+        description: '2 new posts from Wade Warren.',
+        date: 'Sat 19, 2025',
+    },
+    {
+        id: 8,
+        name: 'Rut',
+        avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+        description: '2 new posts from Wade Warren.',
+        date: 'Sat 19, 2025',
+    },
+    {
+        id: 9,
+        name: '1-Samuel',
+        avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+        description: '2 new posts from Wade Warren.',
+        date: 'Sat 19, 2025',
+    },
 ];
 
 const avatarColors = ['#FF5733', '#FFC300', '#8E44AD', '#3498DB', '#16A085', '#E67E22'];
@@ -48,14 +76,21 @@ const avatarColors = ['#FF5733', '#FFC300', '#8E44AD', '#3498DB', '#16A085', '#E
 export default function NotificationsScreen() {
     const [activeTab, setActiveTab] = useState('People');
 
-    const getAvatarColor = (index) => {
+    const getAvatarColor = (index: number) => {
         return avatarColors[index % avatarColors.length];
     };
 
 
     return (
         <View className="flex-1 pt-5" style={globalStylesLayout.background}>
-            <ScrollView className="px-4 pb-20" showsVerticalScrollIndicator={false}>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                    paddingHorizontal: 16,
+                    paddingBottom: 80,
+                    minHeight: '100%', // fuerza altura mínima para que el scroll se active
+                }}
+            >
 
                 {/* 🔍 Input de búsqueda */}
                 <View className="flex-row items-center bg-white rounded-xl px-4 py-2 mb-6" style={globalStylesLayout.LogBoxShad}>
@@ -110,15 +145,20 @@ export default function NotificationsScreen() {
                                 <Text className="text-xs text-gray-500">{p.description}</Text>
                             </View>
 
-                            <Text className="text-xs text-gray-400">{p.date}</Text>
+                            <Pressable
+                                className="bg-slate-900 p-2.5 rounded-lg items-center justify-center
+                       active:bg-blue-800 dark:bg-blue-600 dark:active:bg-blue-700"
+                                onPress={() => {
+                                    console.log('Botón presionado');
+                                }}
+                            >
+                                <Ionicons name="arrow-forward" size={20} color="white" />
+                            </Pressable>
+
                         </View>
                     ))}
                 </View>
-
-
-
             </ScrollView>
         </View>
     );
 }
-
