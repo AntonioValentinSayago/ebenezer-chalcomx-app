@@ -3,7 +3,8 @@ const { width } = Dimensions.get('window');
 
 export const globalStylesLayout = StyleSheet.create({
   background: {
-    backgroundColor: '#FBF9F7',
+    flex: 1,
+    backgroundColor: 'blue',
   },
   container: {
     flex: 1,
