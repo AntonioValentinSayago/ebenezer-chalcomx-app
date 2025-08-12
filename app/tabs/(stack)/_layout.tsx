@@ -56,7 +56,7 @@ const StackLayout = () => {
             <Stack.Screen
                 name="home/index"
                 options={{
-                    headerShown: true,
+                    headerShown: false,
                 }}
             />
         </Stack>
