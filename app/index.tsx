@@ -86,7 +86,7 @@ export default function App() {
                             </LinearGradient>
                         </TouchableOpacity>
                         <Text style={globalStylesLayout.description}>
-                            Si eres nuevo puedes entrar <Link screen="Profile" params={{ id: 'jane' }} style={globalStylesLayout.color}> aqui</Link>
+                            Si eres nuevo puedes entrar <Link screen="Profile" params={{ id: 'jane' }} style={globalStylesLayout.color}>aqui</Link>
                         </Text>
                     </View>
                 </View>
