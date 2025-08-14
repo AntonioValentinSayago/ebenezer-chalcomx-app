@@ -1,4 +1,4 @@
-import { Animated } from 'react-native';
+import { Animated, Dimensions } from 'react-native';
 
 /**
  * Animación de flotación infinita para un valor animado
@@ -25,3 +25,7 @@ export const animateFloat = (
         ])
     ).start();
 };
+
+/** Dashboard */
+const { width } = Dimensions.get('window');
+export default width;
