@@ -14,7 +14,7 @@ interface Props {
 
 const CustomNotification = ({ notifications } : Props) => {
     return (
-        <View className="mb-4">
+        <View className="mb-28">
             <Text className="text-lg font-semibold mb-2">Notificaciones</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} className="space-x-3">
                 {notifications.map((n) => (
