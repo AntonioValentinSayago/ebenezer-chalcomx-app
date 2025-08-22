@@ -21,7 +21,7 @@ const HomeAuthStep = ({ onBack }: Props) => {
                 />
                 <Button
                     title="Entrar"
-                    onPress={() =>  router.push('/tabs/dashboard')}
+                    onPress={() =>  router.push('/tabs/(dashboard)/home')}
                 />
             </View>
         </SafeAreaView>
