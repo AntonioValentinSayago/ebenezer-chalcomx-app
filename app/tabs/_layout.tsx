@@ -1,3 +1,4 @@
+import CustomerHeader from '@/presentation/components/CustomerHeader/CustomerHeader';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Tabs } from 'expo-router';
@@ -8,7 +9,8 @@ const TabsLayout = () => {
         <Tabs screenOptions={{
             tabBarActiveTintColor: '#ED254E',
             tabBarInactiveTintColor: '#011936',
-            headerShown: false,
+            headerShown: true,
+            header: () => <CustomerHeader />,
             tabBarLabelStyle: {
                 fontSize: 11,
                 fontFamily: 'WinkyRough-Bold',
@@ -32,7 +34,7 @@ const TabsLayout = () => {
             },
             tabBarBackground: () => (
                 <LinearGradient
-                    colors={['#F6F6F6', 'white']}
+                    colors={['#F6F6F6', '#F6F6F6']}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
                     style={{
@@ -42,28 +44,26 @@ const TabsLayout = () => {
                     }}
                 />
             ),
-
-
         }}>
             <Tabs.Screen
-                name="dashboard/index"
+                name="(dashboard)"
                 options={{
                     title: 'Home',
                     tabBarIcon: ({ color }) => <Ionicons size={28} name="home" color={color} />,
                 }}
             />
             <Tabs.Screen
-                name="(stack)"
+                name="notifications/index"
                 options={{
-                    title: 'Biblia',
-                    tabBarIcon: ({ color }) => <Ionicons size={28} name="book" color={color} />,
+                    title: 'Notificaciones',
+                    tabBarIcon: ({ color }) => <Ionicons size={28} name="notifications" color={color} />,
                 }}
             />
             <Tabs.Screen
-                name="profile/index"
+                name="(bible)"
                 options={{
-                    title: 'Cultos',
-                    tabBarIcon: ({ color }) => <Ionicons size={28} name="call" color={color} />,
+                    title: 'Biblia',
+                    tabBarIcon: ({ color }) => <Ionicons size={28} name="book" color={color} />,
                 }}
             />
             <Tabs.Screen

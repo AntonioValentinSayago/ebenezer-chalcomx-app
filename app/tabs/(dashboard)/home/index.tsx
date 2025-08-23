@@ -72,7 +72,7 @@ export default function ChurchDashboard() {
             {/* Miembros activos */}
             <TouchableOpacity
               className="flex-1 rounded-2xl bg-cyan-50 p-4 shadow cursor-pointer"
-              onPress={() => router.push('/tabs/members')}
+              onPress={() => router.push('/members')}
             >
               <View className="flex-row justify-between items-center mb-2">
                 <View>
