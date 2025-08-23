@@ -1,4 +1,4 @@
-import { Slot, SplashScreen } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 
 import { useFonts } from 'expo-font';
@@ -21,6 +21,26 @@ const RootLayout = () => {
 
   if (!fontsLoaded && !error) return null;
 
-  return <Slot />;
+  return <Stack>
+    <Stack.Screen
+      name="index"
+      options={{
+        headerShown: false, // <-- Agrega esta línea para ocultar el header
+      }}
+    />
+    <Stack.Screen
+      name="tabs"
+      options={{ headerShown: false, animation: 'slide_from_right' }}
+    />
+    <Stack.Screen
+      name="auth"
+      options={{ headerShown: false, animation: 'slide_from_right' }}
+    />
+    <Stack.Screen
+      name="members"
+      // <---- Agrega esta opción para ocultar el header principal
+      options={{ headerShown: false, animation: 'slide_from_right' }}
+    />
+  </Stack>
 };
 export default RootLayout;
