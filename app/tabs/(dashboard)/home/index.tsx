@@ -18,7 +18,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 // Datos mock
-const departments: Department[] = Array.from({ length: 25 }).map((_, i) => ({
+const departments: Department[] = Array.from({ length: 2 }).map((_, i) => ({
   id: String(i + 1),
   name: ['Worship', 'Kids', 'Youth', 'Outreach', 'Hospitality', 'Finance', 'Media'][i % 7] + ` Dept ${i + 1}`,
   leader: ['Ana', 'Carlos', 'María', 'José', 'Lucía', 'Miguel', 'Sofía', 'Antonio'][i % 7] + ` L.${i + 1}`,
