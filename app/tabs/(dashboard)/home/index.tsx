@@ -3,6 +3,7 @@ import {
   FlatList,
   Image,
   Pressable,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -58,104 +59,94 @@ export default function ChurchDashboard() {
         data={paginatedData}
         keyExtractor={(d) => d.id}
         renderItem={({ item }) => <CustomDepartament item={item} />}
-        numColumns={2}
+        numColumns={1}
         contentContainerStyle={{ padding: 16 }}
-        columnWrapperStyle={{ justifyContent: 'space-around' }}
+        //columnWrapperStyle={{ justifyContent: 'space-around' }}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <>
+            onPress={() => router.push('/members')}
             {/* Header */}
             <View className="flex-row items-center justify-between mb-4">
               <View>
-                <Text className="text-2xl font-extrabold text-slate-800">Ministerios Ebenezer</Text>
-                <Text className="text-sm text-slate-600">Iglesia de Cristo Príncipe de Paz</Text>
+                <Text className="text-2xl font-extrabold text-slate-800">Iglesia Ebenezer</Text>
+                <Text className="text-sm text-slate-600">Príncipe de Paz</Text>
               </View>
               <Pressable className="p-2 rounded-full bg-cyan-800 shadow mr-2">
                 <Image source={logoEbenzer} className="w-11 h-11 rounded-full" />
               </Pressable>
             </View>
+
+
+
             {/* KPIs */}
-            <View className="flex-row gap-2 mb-4">
-              {/* Miembros activos */}
-              <TouchableOpacity
-                className="flex-1 rounded-2xl shadow cursor-pointer overflow-hidden"
-                onPress={() => router.push('/members')}
-              >
-                <LinearGradient
-                  colors={["#06b6d4", "#3b82f6"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  className="p-4"
-                >
-                  <View className="flex-row justify-between items-center mb-2">
-                    <View>
-                      <Text className="text-xs text-gray-100">Miembros activos</Text>
-                      <Text className="text-3xl font-extrabold text-white">
-                        {totalActiveMembers}
-                      </Text>
-                    </View>
-                    <Ionicons name="list-circle" size={50} color="#fff" />
+            <View className="p-4 bg-white rounded-2xl shadow-xl border border-gray-200 m-4">
+              <View className="flex-row items-start justify-between">
+                {/* Logo y Título */}
+                <View className="flex-row items-start space-x-4 flex-1">
+                  {/* Logo de la empresa */}
+                  {/* Título y Empresa */}
+                  <View className="flex-1">
+                    <Text className="text-xl font-bold text-gray-800">Miembros Activos</Text>
+                    <Text className="text-gray-500 text-sm mt-1">Ejemplo Nombre Pastor.</Text>
                   </View>
-                </LinearGradient>
-              </TouchableOpacity>
+                </View>
 
-              {/* Crear nueva membresía */}
-              <View className="flex-1 rounded-2xl shadow overflow-hidden">
-                <LinearGradient
-                  colors={["#7c3aed", "#9333ea"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  className="p-4"
-                >
-                  <Text className="text-xs text-gray-100">Crear nueva membresía</Text>
-                  <View className="items-center p-1">
-                    <Ionicons name="person-add" size={30} color="#fff" />
-                  </View>
-                </LinearGradient>
+                {/* Íconos de acción */}
+                <View className="flex-row space-x-4">
+                  <TouchableOpacity>
+                    <Ionicons name="mail-outline" size={24} color="#6b7280" />
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Ionicons name="add-circle-outline" size={24} color="#6b7280" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              {/* Salario y fecha */}
+              <View className="flex-row items-center justify-between mt-4">
+                <Text className="text-xl font-bold text-blue-600">0000</Text>
+                <Text className="text-gray-400 text-xs">2 de septiembre de 2025</Text>
               </View>
             </View>
 
-            <View className="flex-row gap-2 mb-4">
-              {/* Nueva publicación */}
-              <View className="flex-1 rounded-2xl shadow overflow-hidden">
-                <LinearGradient
-                  colors={["#ec4899", "#db2777"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  className="p-4"
-                >
-                  <Text className="text-xs text-white font-extrabold mb-2">
-                    Nueva Publicación
-                  </Text>
-                  <View className="items-center p-1">
-                    <Ionicons name="notifications" size={40} color="#fff" />
-                  </View>
-                </LinearGradient>
-              </View>
-
-              {/* Lista de asistencia */}
-              <View className="flex-1 rounded-2xl shadow overflow-hidden">
-                <LinearGradient
-                  colors={["#22c55e", "#16a34a"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  className="p-4"
-                >
+            {/* fin de JPIS */}
+              {/* Scroll horizontal */}
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} className='p-4'>
+                {/* Card 1 */}
+                <View className="bg-white rounded-2xl shadow-md p-4 w-72 mr-3 h-28">
                   <View className="flex-row justify-between items-center mb-2">
-                    <View>
-                      <Text className="text-xs text-gray-100">Lista de Asistencia</Text>
-                      <Text className="text-2xl font-bold text-white">
-                        {todayAttendance}
-                      </Text>
-                      <Text className="text-sm text-gray-200">
-                        {new Date().toLocaleDateString()}
-                      </Text>
-                    </View>
-                    <Ionicons name="checkmark-done-circle" size={50} color="#fff" />
+                    <Text className="text-sm font-semibold">Activar Membresia</Text>
+                    <Text className="text-slate-900 text-xs font-medium bg-green-500 px-2 py-1 rounded-full">
+                      texto
+                    </Text>
                   </View>
-                </LinearGradient>
-              </View>
-            </View>
+
+                  <View className="flex-row justify-between items-center mt-3">
+                    <Text className="text-sm text-gray-600">aqui va texto</Text>
+                    <Pressable className="bg-slate-100 rounded-full p-2">
+                      <Ionicons name="add-circle-outline" size={18} color="black" />
+                    </Pressable>
+                  </View>
+                </View>
+
+                {/* Card 2 */}
+                <View className="bg-white rounded-2xl shadow-md p-4 w-72 mr-3 h-28">
+                  <View className="flex-row justify-between items-center mb-2">
+                    <Text className="text-sm font-semibold">Nueva Notificación</Text>
+                    <Text className="text-slate-900 text-xs font-medium bg-green-500 px-2 py-1 rounded-full">
+                      texto
+                    </Text>
+                  </View>
+
+                  <View className="flex-row justify-between items-center mt-3">
+                    <Text className="text-sm text-gray-600">aqui va texto</Text>
+                    <Pressable className="bg-slate-100 rounded-full p-2">
+                      <Ionicons name="add-circle-outline" size={18} color="black" />
+                    </Pressable>
+                  </View>
+                </View>
+              </ScrollView>
 
             {/* Buscador */}
             <TextInput
@@ -177,7 +168,7 @@ export default function ChurchDashboard() {
           <>
             {/* Paginador */}
             {totalPages > 1 && (
-              <View className="flex-row justify-center flex-wrap my-4">
+              <View className="flex-row justify-center flex-wrap my-4 bg-slate-900">
                 {Array.from({ length: totalPages }).map((_, i) => {
                   const page = i + 1;
                   const isActive = currentPage === page;
