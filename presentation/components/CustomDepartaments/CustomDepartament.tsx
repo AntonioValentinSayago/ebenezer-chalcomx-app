@@ -1,9 +1,9 @@
 import { Department } from '@/infrastructure/interfaces';
-import width from '@/utils/functions/_layout';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { MotiView } from 'moti';
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 interface Props {
   item: Department;
@@ -12,40 +12,66 @@ interface Props {
 const CustomDepartament = ({ item }: Props) => {
   return (
     <MotiView
-      from={{ opacity: 0, translateY: 10 }}
+      from={{ opacity: 0, translateY: 20 }}
       animate={{ opacity: 1, translateY: 0 }}
-      transition={{ delay: Number(item.id) * 10, type: 'timing' }}
-      className="p-2 w-[48%]"
-      style={{ width: (width / 2) - 12 }}
+      transition={{ delay: Number(item.id) * 50, type: 'timing', duration: 500 }}
+      className="p-2 w-full" // El cambio clave: w-full para ocupar todo el ancho
     >
-      <Pressable onPress={() => console.log(`Departamento: ${item.name}`)}>
-        <View className="rounded-2xl overflow-hidden shadow-lg">
-          <View className="p-3" style={{ backgroundColor: item.color }}>
-            <View className="flex-col">
-              {/* Header */}
-              <View className="flex-row items-center mb-2">
-                <View className="p-3 rounded-full bg-white/60 mr-3">
-                  <Ionicons name={item.icon as any} size={20} color="#111827" />
-                </View>
+      <TouchableOpacity onPress={() => console.log(`Job: ${item.name}`)}>
+        <View className="rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+          <View className="p-4 bg-white">
+            {/* Header */}
+            <View className="flex-row items-start justify-between">
+              <View className="flex-row items-start space-x-3">
+                {/* Logo de la empresa */}
+                <LinearGradient
+                  colors={["#ffffff", "#f8f8f8", "#f0f0f0"]}
+                  className="p-3 rounded-xl flex-row items-center justify-center"
+                >
+                  <Ionicons name={item.icon as any} size={24} color={item.name} />
+                </LinearGradient>
+                {/* Título y Empresa */}
                 <View className="flex-1">
-                  <Text className="text-sm font-semibold flex-wrap">
+                  <Text className="text-sm font-semibold text-gray-800">
                     {item.name}
                   </Text>
-                  <Text className="text-xs text-gray-700 flex-wrap">
-                    Líder: {item.leader}
+                  <Text className="text-xs text-gray-600 font-light mt-0.5">
+                    {item.name}
                   </Text>
                 </View>
               </View>
+              {/* Ícono de marcador */}
+              <TouchableOpacity>
+                <Ionicons name="bookmark-outline" size={24} color="#6b7280" />
+              </TouchableOpacity>
+            </View>
 
-              {/* Footer */}
-              <View className="items-end">
-                <Text className="text-2xl font-bold">{item.members}</Text>
-                <Text className="text-xs text-gray-600">miembros</Text>
+            {/* Etiquetas */}
+            <View className="flex-row items-center mt-3 space-x-2">
+              <View className="px-3 py-1 bg-gray-100 rounded-full">
+                <Text className="text-xs font-semibold text-gray-600">
+                  {item.name}
+                </Text>
               </View>
+              <View className="px-3 py-1 bg-gray-100 rounded-full">
+                <Text className="text-xs font-semibold text-gray-600">
+                  {item.name}
+                </Text>
+              </View>
+            </View>
+
+            {/* Salario y fecha */}
+            <View className="flex-row items-center justify-between mt-4">
+              <Text className="text-xl font-bold text-blue-600">
+                {item.name}
+              </Text>
+              <Text className="text-xs text-gray-400">
+                {item.name}
+              </Text>
             </View>
           </View>
         </View>
-      </Pressable>
+      </TouchableOpacity>
     </MotiView>
   );
 };
