@@ -1,4 +1,5 @@
 import { AntDesign } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { MotiText, MotiView } from 'moti';
 import React, { useMemo, useState } from 'react';
@@ -74,9 +75,9 @@ function BookCard({ item, onPress }: BookCardProps) {
       from={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: 'timing', duration: 300 }}
-      className="m-2 min-w-[140px] max-w-[240px] bg-white rounded-2xl shadow "
+      className="m-2 min-w-[180px] max-w-[240px] bg-white rounded-2xl shadow "
     >
-      <Pressable onPress={() => onPress(item)} className="m-2 flex-1 min-w-[140px] max-w-[220px] bg-black/5 rounded-2xl shadow">
+      <Pressable onPress={() => onPress(item)} className="m-2 flex-1 min-w-[140px] max-w-[220px] rounded-2xl">
         <View className="flex-row items-center justify-between">
           <View>
             <Text className="text-lg font-bold text-black">{item.name}</Text>
@@ -120,22 +121,32 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaView className="flex-1 bg-white">
+      <SafeAreaView className="flex-1">
         <StatusBar style="dark" />
-        <Header search={search} setSearch={setSearch} filter={filter} setFilter={setFilter} />
 
-        <View className="px-2 pt-4 flex-1">
-          <FlatList
-            data={data}
-            keyExtractor={(item) => item.id}
-            numColumns={2}
-            renderItem={({ item }) => <BookCard item={item} onPress={openBook} />}
-            contentContainerStyle={{ paddingBottom: 60 }}
-          />
-        </View>
+        {/* Agrega LinearGradient como fondo */}
+        <LinearGradient
+          colors={["#fff8ec", "white", "white"]}
+          start={{ x: 1, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={{ flex: 1 }} // Asegura que el degradado cubra toda la vista
+        >
+          {/* Mueve el contenido dentro del LinearGradient */}
+          <Header search={search} setSearch={setSearch} filter={filter} setFilter={setFilter} />
+
+          <View className="px-2 pt-4 flex-1">
+            <FlatList
+              data={data}
+              keyExtractor={(item) => item.id}
+              numColumns={2}
+              renderItem={({ item }) => <BookCard item={item} onPress={openBook} />}
+              contentContainerStyle={{ paddingBottom: 60 }}
+            />
+          </View>
+        </LinearGradient>
 
         {selected && (
-          <View className="absolute inset-0 top-[header-height] justify-end" style={{backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
+          <View className="absolute inset-0 top-[header-height] justify-end" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
             <Pressable style={{ flex: 1 }} onPress={closeDetail} />
             <MotiView
               from={{ translateY: 300 }}
@@ -152,7 +163,7 @@ export default function App() {
                     from={{ opacity: 0, translateY: 10 }}
                     animate={{ opacity: 1, translateY: 0 }}
                     transition={{ type: 'timing', duration: 300 }}
-                    className="flex-1 mb-3 p-4 bg-slate-200 rounded-lg mx-1" // <-- Cambia aquí
+                    className="flex-1 mb-3 p-4 bg-slate-200 rounded-lg mx-1"
                   >
                     <Text className="text-base text-black">{item.number}. {item.text}</Text>
                   </MotiView>

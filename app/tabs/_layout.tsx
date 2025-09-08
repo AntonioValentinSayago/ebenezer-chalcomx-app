@@ -7,7 +7,7 @@ import React from 'react';
 const TabsLayout = () => {
     return (
         <Tabs screenOptions={{
-            tabBarActiveTintColor: '#ED254E',
+            tabBarActiveTintColor: '#046473',
             tabBarInactiveTintColor: '#011936',
             headerShown: true,
             header: () => <CustomerHeader />,
@@ -39,8 +39,8 @@ const TabsLayout = () => {
                     end={{ x: 1, y: 0 }}
                     style={{
                         flex: 1,
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
+                        borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10,
                     }}
                 />
             ),
