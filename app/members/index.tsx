@@ -1,5 +1,6 @@
-// MembersDashboard.tsx
 import { Entypo } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import { Link } from "expo-router";
 import { MotiView } from "moti";
 import React, { useMemo, useState } from "react";
 import { ActivityIndicator, FlatList, Image, Pressable, SafeAreaView, Text, TextInput, View } from "react-native";
@@ -15,7 +16,7 @@ type Member = {
 const sampleMembers: Member[] = Array.from({ length: 30 }).map((_, i) => ({
   id: `${i + 1}`,
   name: `Miembro ${i + 1}`,
-  ministry: ["Alabanza", "Ujieres", "Niños", "Juventud", "Oración", "Multimedia"][i % 6],
+  ministry: ['Servidores', 'Adulam', 'Multimedia', 'Bernabé', 'Intercesión', 'Cafetería', 'Ebenekids', 'Clinica-lucas', 'Audio', 'Talento'][i % 10],
   avatar: i % 2 === 0 ? `https://i.pravatar.cc/100?img=${i + 10}` : undefined,
 }));
 
@@ -30,7 +31,7 @@ const getInitials = (fullName: string) =>
 export default function MembersDashboard() {
   const [search, setSearch] = useState("");
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(6); // cuántos se cargan al inicio
+  const [visibleCount, setVisibleCount] = useState(6); 
   const [loadingMore, setLoadingMore] = useState(false);
 
   // 🔹 Filtrado por buscador
@@ -44,21 +45,19 @@ export default function MembersDashboard() {
     [search]
   );
 
-  // 🔹 Los que se muestran con scroll infinito
   const visibleData = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
 
   const loadMore = () => {
     if (loadingMore || visibleCount >= filtered.length) return;
     setLoadingMore(true);
     setTimeout(() => {
-      setVisibleCount((prev) => prev + 6); // carga 6 más
+      setVisibleCount((prev) => prev + 6); 
       setLoadingMore(false);
-    }, 800); // simulación de delay
+    }, 800);
   };
 
   const renderItem = ({ item, index }: { item: Member; index: number }) => {
     const initials = getInitials(item.name);
-    const menuOpen = openMenuId === item.id;
 
     return (
       <MotiView
@@ -89,70 +88,62 @@ export default function MembersDashboard() {
             </Text>
           </View>
 
-          {/* 3 puntitos */}
-          <View className="relative">
-            <Pressable
-              onPress={() => setOpenMenuId(menuOpen ? null : item.id)}
-              className="p-2 rounded-xl active:opacity-70"
-            >
-              <Entypo name="dots-three-vertical" size={16} />
-            </Pressable>
-
-            {menuOpen && (
-              <View className="absolute right-0 mt-2 w-40 rounded-2xl bg-white dark:bg-neutral-800 shadow-lg border border-neutral-100 dark:border-neutral-700">
-                {["Ver perfil", "Editar", "Eliminar"].map((opt, idx) => (
-                  <Pressable
-                    key={opt}
-                    onPress={() => setOpenMenuId(null)}
-                    className={`px-4 py-3 ${idx !== 2 ? "border-b border-neutral-100 dark:border-neutral-700" : ""}`}
-                  >
-                    <Text className="text-sm text-neutral-700 dark:text-neutral-200">{opt}</Text>
-                  </Pressable>
-                ))}
-              </View>
-            )}
-          </View>
+          {/* Botón de detalle */}
+          <Pressable onPress={() => {}} className="p-2 rounded-xl active:opacity-70">
+            <Link href={`/members/${item.id}`} asChild>
+              <Text>
+                <Entypo name="dots-three-vertical" size={16} />
+              </Text>
+            </Link>
+          </Pressable>
         </View>
       </MotiView>
     );
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-neutral-50 dark:bg-black">
-      {/* Header */}
-      <View className="px-5 pt-4 pb-3">
-        <Text className="text-2xl font-bold text-neutral-900 dark:text-white">Miembros</Text>
-        <Text className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-          Lista de servidores de la iglesia
-        </Text>
+    <LinearGradient
+      colors={["#fff8ec", "white", "white"]}
+      start={{ x: 1, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={{ flex: 1 }}
+    >
+      <SafeAreaView style={{ flex: 1 }}>
+        {/* Header */}
+        <View className="px-5 pt-4 pb-3">
+          <Text className="text-2xl font-bold text-neutral-900 dark:text-white">Miembros</Text>
+          <Text className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+            Lista de servidores de la iglesia
+          </Text>
 
-        {/* Buscador */}
-        <TextInput
-          value={search}
-          onChangeText={setSearch}
-          placeholder="Buscar miembro o ministerio..."
-          className="mt-3 px-4 py-2 rounded-xl bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700"
-          placeholderTextColor="#9ca3af"
+          {/* Buscador */}
+          <TextInput
+            value={search}
+            onChangeText={setSearch}
+            placeholder="Buscar miembro o ministerio..."
+            className="mt-3 px-4 py-2 rounded-xl bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700"
+            placeholderTextColor="#9ca3af"
+          />
+        </View>
+
+        {/* Lista con scroll infinito */}
+        <FlatList
+          data={visibleData}
+          keyExtractor={(m) => m.id}
+          renderItem={renderItem}
+          contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 20 }}
+          onScrollBeginDrag={() => setOpenMenuId(null)}
+          onEndReached={loadMore}
+          onEndReachedThreshold={0.3}
+          ListFooterComponent={
+            loadingMore ? (
+              <View className="py-4">
+                <ActivityIndicator size="small" color="#2563eb" />
+              </View>
+            ) : null
+          }
         />
-      </View>
-
-      {/* Lista con scroll infinito */}
-      <FlatList
-        data={visibleData}
-        keyExtractor={(m) => m.id}
-        renderItem={renderItem}
-        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 20 }}
-        onScrollBeginDrag={() => setOpenMenuId(null)}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.3}
-        ListFooterComponent={
-          loadingMore ? (
-            <View className="py-4">
-              <ActivityIndicator size="small" color="#2563eb" />
-            </View>
-          ) : null
-        }
-      />
-    </SafeAreaView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }

@@ -25,13 +25,13 @@ const StackLayout = () => {
             </TouchableOpacity>
 
             {/* Título */}
-            <Text className="text-xl font-semibold text-slate-950">
-              Miembros con Membresía
+            <Text className="text-sm font-semibold text-slate-950">
+              Miembros Activos de la Iglesia
             </Text>
           </View>
         ),
         contentStyle: {
-          backgroundColor: "white",
+          backgroundColor: "#fff8ec",
         },
       }}
     >
