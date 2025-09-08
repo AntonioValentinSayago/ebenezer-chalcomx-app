@@ -10,7 +10,7 @@ const CustomerHeader = () => {
                 paddingTop: top,
                 paddingHorizontal: 16,
                 paddingBottom: 12,
-                backgroundColor: "#F6F6F6",
+                backgroundColor: "#fff8ec",
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
