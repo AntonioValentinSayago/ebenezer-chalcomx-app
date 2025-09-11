@@ -6,6 +6,18 @@
 const tintColorDark = '#fff';
 
 export const Colors = {
+  departamentsColors: {
+    servidores: '#0056aa',
+    adulam: '#6B8E23',
+    multimedia: '#ff8847',
+    bernabe: '#ffff9b',
+    intercesion: '#aa67fe',
+    cafeteria: '#6C3B2A',
+    ebenkids: '#d5154e',
+    clinicalucas: '#ffffff',
+    audio: '#0a2044',
+    talento: '#94abe1'
+  },
   colorsPrimary: {
     backgroundWhiteOne: '#FFF3EC',
     backgroundWhiteTwo: '#FFEED5',
